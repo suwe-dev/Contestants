@@ -7,9 +7,9 @@ import lombok.Getter;
  */
 @Getter
 public enum Badges {
-    Code_Ninja("Code Ninja"),
-    Code_Champ("Code Champ"),
-    Code_Master("Code Master");
+    CODE_NINJA("Code Ninja"),
+    CODE_CHAMP("Code Champ"),
+    CODE_MASTER("Code Master");
 
     private final String name;
 

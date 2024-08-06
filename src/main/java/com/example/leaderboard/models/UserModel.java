@@ -3,13 +3,11 @@ package com.example.leaderboard.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -23,6 +21,6 @@ public class UserModel {
     private String username;
     @Min(value = 0)
     @Max(value = 100)
-    private Double score;
-    private List<String> badges;
+    private Integer score = 0;
+    private List<String> badges = new ArrayList<>();
 }
