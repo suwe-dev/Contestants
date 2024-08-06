@@ -32,10 +32,10 @@ class UserRepositoryTest {
         userRepository.save(user2);
     }
 
-//    @AfterEach
-//    void tearDown() {
-//        userRepository.deleteAll();
-//    }
+    @AfterEach
+    void tearDown() {
+        userRepository.deleteAll();
+    }
 
     @Test
     void test_findAllUsers() {
