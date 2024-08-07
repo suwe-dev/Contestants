@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(userModel);
     }
 
-    private List<String> getBadges(Integer score, List<String> badges) {
+    static List<String> getBadges(Integer score, List<String> badges) {
 
         Set<String> badgeSet = new HashSet<>(badges);
         if (1 <= score && score < 30) {

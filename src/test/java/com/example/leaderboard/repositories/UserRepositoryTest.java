@@ -4,6 +4,7 @@ import com.example.leaderboard.models.UserModel;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataMongoTest
 class UserRepositoryTest {
+
     @Autowired
     private UserRepository userRepository;
 
