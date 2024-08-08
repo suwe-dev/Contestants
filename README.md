@@ -64,6 +64,8 @@ To run the tests for the project, follow these steps:
    ```bash
    mvn test
    ```
+3. Make sure all the test cases are passing
+
 ---
 ### Building the project
 
@@ -91,6 +93,7 @@ To build the project using Maven, follow these steps:
    ```bash
    mvn install
    ```
+  
 ---
 ## API Documentation
 Find the **Postman** API collection [here](https://www.postman.com/supply-astronaut-79165515/workspace/crio/collection/27292799-3f13afa9-3e9a-42b6-b27e-6da2f7c207de?action=share&creator=27292799)
