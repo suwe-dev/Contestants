@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserModel> getAll() {
-        return userRepository.findAll();
+        return userRepository.findAllByOrderByScoreDesc();
     }
 
     @Override
@@ -26,6 +26,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserModel create(UserModel userModel) {
+        if (userModel.getScore() < 0) {
+            throw new NoSuchElementException("Score should be greater than 0");
+        }
+        if (userModel.getScore() > 0) {
+            List<String> badges = getBadges(userModel.getScore(), new ArrayList<>());
+            userModel.setBadges(badges);
+        }
         return userRepository.save(userModel);
     }
 
@@ -35,8 +42,11 @@ public class UserServiceImpl implements UserService {
         if (1 <= score && score < 30) {
             badgeSet.add(Badges.CODE_NINJA.getName());
         } else if (30 <= score && score < 60) {
+            badgeSet.add(Badges.CODE_NINJA.getName());
             badgeSet.add(Badges.CODE_CHAMP.getName());
         } else if (60 <= score && score <= 100) {
+            badgeSet.add(Badges.CODE_NINJA.getName());
+            badgeSet.add(Badges.CODE_CHAMP.getName());
             badgeSet.add(Badges.CODE_MASTER.getName());
         }
         return new ArrayList<>(badgeSet);
@@ -44,9 +54,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserModel update(String id, UserModel userModel) {
+        if (userModel.getScore() <= 0) {
+            throw new NoSuchElementException("Score should be greater than 0");
+        }
         Optional<UserModel> existingUserData = userRepository.findById(id);
+
         if (existingUserData.isPresent()) {
             UserModel existingUserModel = existingUserData.get();
+            if (userModel.getScore() < existingUserModel.getScore()) {
+                throw new NoSuchElementException("Score should be greater than previous score");
+            }
+
 
             Integer new_score = userModel.getScore();
             Integer updated_score;
@@ -66,7 +84,7 @@ public class UserServiceImpl implements UserService {
             List<String> badges = getBadges(updated_score, old_badges);
             existingUserModel.setBadges(badges);
 
-            return userRepository.save(userModel);
+            return userRepository.save(existingUserModel);
         }
         throw new NoSuchElementException("User not found");
     }

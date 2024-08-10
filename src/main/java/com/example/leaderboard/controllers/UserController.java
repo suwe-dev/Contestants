@@ -39,6 +39,10 @@ public class UserController {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .body(new ResponseDto("User created successfully"));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(new ResponseDto(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)

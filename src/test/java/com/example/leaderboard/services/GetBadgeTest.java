@@ -27,6 +27,7 @@ public class GetBadgeTest {
     void test_getBadges_2() {
         Integer score = 50;
         List<String> expectedBadges = new ArrayList<>();
+        expectedBadges.add(Badges.CODE_NINJA.getName());
         expectedBadges.add(Badges.CODE_CHAMP.getName());
 
         List<String> actualBadges = getBadges(score, new ArrayList<>());
@@ -37,6 +38,8 @@ public class GetBadgeTest {
     void test_getBadges_3() {
         Integer score = 75;
         List<String> expectedBadges = new ArrayList<>();
+        expectedBadges.add(Badges.CODE_NINJA.getName());
+        expectedBadges.add(Badges.CODE_CHAMP.getName());
         expectedBadges.add(Badges.CODE_MASTER.getName());
 
         List<String> actualBadges = getBadges(score, new ArrayList<>());

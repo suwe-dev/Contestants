@@ -58,14 +58,14 @@ class UserServiceImplTest {
         List<UserModel> users = new ArrayList<>();
         users.add(user1);
         users.add(user2);
-        when(userRepository.findAll()).thenReturn(users);
+        when(userRepository.findAllByOrderByScoreDesc()).thenReturn(users);
 
         List<UserModel> results = userService.getAll();
 
         assertNotNull(results);
         assertEquals(2, users.size());
 
-        verify(userRepository, times(1)).findAll();
+        verify(userRepository, times(1)).findAllByOrderByScoreDesc();
     }
 
     @Test
